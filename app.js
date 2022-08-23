@@ -11,7 +11,9 @@ app.get('/', (req, res) => {
 })
 app.use('/api/v1/tasks', tasks)
 const PORT = 3000
-
+app.use('*', (req, res) => {
+  res.json({ msg: '404 page not found' })
+})
 const start = async () => {
   try {
     await connect_db(process.env.MONGO_URL)
